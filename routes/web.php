@@ -24,6 +24,14 @@ Route::get('/dashboard', function () {
 Route::get('/admin', function () {
     return dd('Hello Admin');
 })->middleware(['auth', 'verified', 'role:SuperAdmin'])->name('admin');
+//Employee
+Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'employee'], function () {
+    Route::get('/dashboard', function () {
+        return view('employee/employeeDashboard', ['judul' => "Employee - Dashboard"]);
+        //return $employee;
+    })->name('employeeDashboard');
+});
+//End Employee
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

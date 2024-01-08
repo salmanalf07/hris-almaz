@@ -4,7 +4,7 @@
             <a href="#" onClick="return false;" class="navbar-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-expanded="false"></a>
             <a href="#" onClick="return false;" class="bars"></a>
             <a class="navbar-brand" href="/dashboard">
-                <img src="assets/images/almaz.png" width="30" alt="" />
+                <img src="{{asset('assets/images/almaz.png')}}" width="30" alt="" />
                 <span class="logo-name">HRIS-ALMAS</span>
             </a>
         </div>
@@ -38,7 +38,7 @@
                                 <li>
                                     <a href="#" onClick="return false;">
                                         <span class="table-img msg-user">
-                                            <img src="assets/images/user/user1.jpg" alt="">
+                                            <img src="{{asset('assets/images/user/user1.jpg')}}" alt="">
                                         </span>
                                         <span class="menu-info">
                                             <span class="menu-title">Sarah Smith</span>
@@ -52,7 +52,7 @@
                                 <li>
                                     <a href="#" onClick="return false;">
                                         <span class="table-img msg-user">
-                                            <img src="assets/images/user/user2.jpg" alt="">
+                                            <img src="{{asset('assets/images/user/user2.jpg')}}" alt="">
                                         </span>
                                         <span class="menu-info">
                                             <span class="menu-title">Airi Satou</span>
@@ -66,7 +66,7 @@
                                 <li>
                                     <a href="#" onClick="return false;">
                                         <span class="table-img msg-user">
-                                            <img src="assets/images/user/user3.jpg" alt="">
+                                            <img src="{{asset('assets/images/user/user3.jpg')}}" alt="">
                                         </span>
                                         <span class="menu-info">
                                             <span class="menu-title">John Doe</span>
@@ -80,7 +80,7 @@
                                 <li>
                                     <a href="#" onClick="return false;">
                                         <span class="table-img msg-user">
-                                            <img src="assets/images/user/user4.jpg" alt="">
+                                            <img src="{{asset('assets/images/user/user4.jpg')}}" alt="">
                                         </span>
                                         <span class="menu-info">
                                             <span class="menu-title">Ashton Cox</span>
@@ -94,7 +94,7 @@
                                 <li>
                                     <a href="#" onClick="return false;">
                                         <span class="table-img msg-user">
-                                            <img src="assets/images/user/user5.jpg" alt="">
+                                            <img src="{{asset('assets/images/user/user5.jpg')}}" alt="">
                                         </span>
                                         <span class="menu-info">
                                             <span class="menu-title">Cara Stevens</span>
@@ -108,7 +108,7 @@
                                 <li>
                                     <a href="#" onClick="return false;">
                                         <span class="table-img msg-user">
-                                            <img src="assets/images/user/user6.jpg" alt="">
+                                            <img src="{{asset('assets/images/user/user6.jpg')}}" alt="">
                                         </span>
                                         <span class="menu-info">
                                             <span class="menu-title">Charde Marshall</span>
@@ -122,7 +122,7 @@
                                 <li>
                                     <a href="#" onClick="return false;">
                                         <span class="table-img msg-user">
-                                            <img src="assets/images/user/user7.jpg" alt="">
+                                            <img src="{{asset('assets/images/user/user7.jpg')}}" alt="">
                                         </span>
                                         <span class="menu-info">
                                             <span class="menu-title">John Doe</span>
@@ -143,7 +143,7 @@
                 <!-- #END# Notifications-->
                 <li class="dropdown user_profile">
                     <div class="dropdown-toggle" data-bs-toggle="dropdown">
-                        <img src="assets/images/user.jpg" alt="user">
+                        <img src="{{asset('assets/images/user.jpg')}}" alt="user">
                     </div>
                     <ul class="dropdown-menu pullDown">
                         <li class="body">

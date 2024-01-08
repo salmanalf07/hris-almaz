@@ -7,7 +7,7 @@
                 <li class="sidebar-user-panel active">
                     <div class="user-panel">
                         <div class=" image">
-                            <img src="assets/images/usrbig.jpg" class="user-img-style" alt="User Image" />
+                            <img src="{{asset('assets/images/usrbig.jpg')}}" class="user-img-style" alt="User Image" />
                         </div>
                     </div>
                     <div class="profile-usertitle">
@@ -15,7 +15,6 @@
                         <div class="profile-usertitle-job ">Manager </div>
                     </div>
                 </li>
-                <li class="header">-- Main</li>
                 <li class=" {{ request()->is('dashboard') ? 'active' : '' }}">
                     <a href="#" onClick="return false;" class="menu-toggle">
                         <i data-feather="monitor"></i>
@@ -23,21 +22,21 @@
                     </a>
                     <ul class="ml-menu">
                         <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
-                            <a href="/dashboard">Dashboard 1</a>
+                            <a href="{{route('dashboard')}}">Dashboard</a>
                         </li>
                         <li>
                             <a href="/admin">Admin</a>
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class=" {{ request()->is('employee*') ? 'active' : '' }}">
                     <a href="#" onClick="return false;" class="menu-toggle">
                         <i data-feather="users"></i>
                         <span>Employees</span>
                     </a>
                     <ul class="ml-menu">
-                        <li>
-                            <a href="pages/employee/all-employees.html">All Employee</a>
+                        <li class="{{ request()->is('employee/dashboard') ? 'active' : '' }}">
+                            <a href="{{route('employeeDashboard')}}">All Employee</a>
                         </li>
                         <li>
                             <a href="pages/employee/add-employee.html">Add Employee</a>
