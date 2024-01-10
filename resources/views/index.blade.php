@@ -13,6 +13,7 @@
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
     <!-- You can choose a theme from css/styles instead of get all themes -->
     <link href="{{asset('assets/css/styles/all-themes.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/css/bundles/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -38,10 +39,18 @@
     <script src="{{asset('assets/js/common.min.js')}}"></script>
     <!-- Custom Js -->
     <script src="{{asset('assets/js/admin.js')}}"></script>
+    @if (request()->is('dashboard'))
     <script src="{{asset('assets/js/bundles/echart/echarts.js')}}"></script>
     <script src="{{asset('assets/js/bundles/apexcharts/apexcharts.min.js')}}"></script>
     <script src="{{asset('assets/js/pages/index.js')}}"></script>
+    @endif
     <script src="{{asset('assets/js/pages/todo/todo.js')}}"></script>
+    <script src="{{asset('assets/js/table.min.js')}}"></script>
+    <script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
+    <!-- form wizard -->
+    <script src="{{asset('assets/js/bundles/jquery.validate.js')}}"></script>
+    <script src="{{asset('assets/js/bundles/jquery-steps/jquery.steps.min.js')}}"></script>
+    <script src="{{asset('assets/js/pages/forms/form-wizard.js')}}"></script>
 </body>
 
 </html>
