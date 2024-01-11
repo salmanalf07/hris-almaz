@@ -23,15 +23,15 @@
                     <span class="login100-form-title p-b-45">
                         LOGIN HRIS ALMAS
                     </span>
-                    @if($errors->has('email'))
+                    @if($errors->has('username'))
                     <div class="alert alert-danger mb-5">
-                        {{ $errors->first('email') }}
+                        {{ $errors->first('username') }}
                     </div>
                     @endif
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" id="email" type="email" name="email" value="{{old('email')}}" required autofocus autocomplete="username" />
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" id="username" type="text" name="username" value="{{old('username')}}" required autofocus autocomplete="username" />
                         <span class="focus-input100"></span>
-                        <span class="label-input100" for="email">Email</span>
+                        <span class="label-input100" for="username">Username</span>
                     </div>
                     @if($errors->has('password'))
                     <span class="text-danger mt-2">

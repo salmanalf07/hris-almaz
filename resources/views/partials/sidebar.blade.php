@@ -46,20 +46,17 @@
                         </li>
                     </ul>
                 </li>
-                <li class=" {{ request()->is('level*') ? 'active' : '' }}">
+                <li class=" {{ request()->is('level*','user*') ? 'active' : '' }}">
                     <a href="#" onClick="return false;" class="menu-toggle">
-                        <i data-feather="users"></i>
+                        <i class="fas fa-atom"></i>
                         <span>Master Data</span>
                     </a>
                     <ul class="ml-menu">
                         <li class="{{ request()->is('level/dashboard') ? 'active' : '' }}">
                             <a href="{{route('levelDashboard')}}">Level</a>
                         </li>
-                        <li>
-                            <a href="pages/employee/add-employee.html">Add Employee</a>
-                        </li>
-                        <li>
-                            <a href="pages/employee/edit-employee.html">Edit Employee</a>
+                        <li class="{{ request()->is('user/dashboard') ? 'active' : '' }}">
+                            <a href="{{route('userDashboard')}}">User</a>
                         </li>
                     </ul>
                 </li>

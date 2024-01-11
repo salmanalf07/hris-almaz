@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\levelController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,17 @@ Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'level']
     Route::post('/edit', [levelController::class, 'edit'])->name('editLevel');
     Route::post('/update', [levelController::class, 'update'])->name('updateLevel');
     Route::delete('/delete', [levelController::class, 'delete'])->name('deleteLevel');
+});
+Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'user'], function () {
+    Route::get('/dashboard', function () {
+        return view('masterData/user/userDashboard', ['judul' => "User", 'subJudul' => "Dashboard"]);
+        //return $employee;
+    })->name('userDashboard');
+    Route::get('/json', [userController::class, 'json'])->name('dataTableUser');
+    Route::post('/store', [userController::class, 'store'])->name('storeUser');
+    Route::post('/edit', [userController::class, 'edit'])->name('editUser');
+    Route::post('/update', [userController::class, 'update'])->name('updateUser');
+    Route::delete('/delete', [userController::class, 'delete'])->name('deleteUser');
 });
 //end level
 

@@ -14,6 +14,17 @@
     <!-- You can choose a theme from css/styles instead of get all themes -->
     <link href="{{asset('assets/css/styles/all-themes.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/bundles/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/form.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/js/bundles/multiselect/css/multi-select.css')}}" rel="stylesheet">
+    <style>
+        .select2-container {
+            width: 100% !important;
+        }
+
+        .select2-container--default .select2-selection--single {
+            border: 0px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -51,6 +62,24 @@
     <script src="{{asset('assets/js/bundles/jquery.validate.js')}}"></script>
     <script src="{{asset('assets/js/bundles/jquery-steps/jquery.steps.min.js')}}"></script>
     <script src="{{asset('assets/js/pages/forms/form-wizard.js')}}"></script>
+    <!-- select2 -->
+    <script src="{{asset('assets/js/bundles/select2.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('select.select2:not(.normal)').each(function() {
+                $(this).select2({
+                    dropdownParent: $(this).parent().parent()
+                });
+            });
+        })
+
+        function reset_from() {
+            // $('#name').val("#").trigger('change').prop("disabled", false);
+            $('.select2').val("#").trigger('change');
+            document.getElementById("form-add").reset();
+            $('.alert-danger').remove();
+        }
+    </script>
 </body>
 
 </html>
