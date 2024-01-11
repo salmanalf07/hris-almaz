@@ -63,6 +63,14 @@
                                         <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
                                     </div>
                                 </div>
+                                <label for="role">Role</label>
+                                <div class="form-group default-select select2Style">
+                                    <select id="role" name="role[]" class="form-control select2" multiple="" data-placeholder="Select your role">
+                                        @foreach($role as $roles)
+                                        <option value="{{$roles->name}}">{{$roles->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <label for="status">Status</label>
                                 <div class="form-group default-select select2Style">
                                     <select id="status" name="status" class="form-control select2" data-placeholder="Select">
@@ -177,6 +185,11 @@
                 $('#name').val(data.name);
                 $('#username').val(data.username);
                 $('#status').val(data.status).trigger('change');
+                var array = Object.keys(data.roles)
+                    .map(function(key) {
+                        return data.roles[key].name;
+                    });
+                $('#role').val(array).trigger('change');
 
                 id = $('#id').val();
 

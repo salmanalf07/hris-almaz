@@ -7,11 +7,11 @@
                 <li class="sidebar-user-panel active">
                     <div class="user-panel">
                         <div class=" image">
-                            <img src="{{asset('assets/images/usrbig.jpg')}}" class="user-img-style" alt="User Image" />
+                            <img src="{{asset('assets/images/blank-profile.png')}}" class="user-img-style" alt="User Image" />
                         </div>
                     </div>
                     <div class="profile-usertitle">
-                        <div class="sidebar-userpic-name"> Emily Smith </div>
+                        <div class="sidebar-userpic-name">{{Auth::user()->name}}</div>
                         <div class="profile-usertitle-job ">Manager </div>
                     </div>
                 </li>
@@ -46,6 +46,7 @@
                         </li>
                     </ul>
                 </li>
+                @role(['SuperAdmin'])
                 <li class=" {{ request()->is('level*','user*') ? 'active' : '' }}">
                     <a href="#" onClick="return false;" class="menu-toggle">
                         <i class="fas fa-atom"></i>
@@ -60,6 +61,7 @@
                         </li>
                     </ul>
                 </li>
+                @endrole
             </ul>
         </div>
         <!-- #Menu -->

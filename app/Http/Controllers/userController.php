@@ -12,7 +12,7 @@ class userController extends Controller
 {
     public function json()
     {
-        $data = User::orderBy('created_at', 'DESC');
+        $data = User::with('roles')->orderBy('created_at', 'DESC');
 
         return DataTables::of($data)
             ->addColumn('aksi', function ($data) {
@@ -30,6 +30,8 @@ class userController extends Controller
                 'name' => ['required', 'string', 'max:255', 'not_equal_to:#'],
                 'username' => ['required', 'string', 'max:255', 'unique:users'],
                 'password' => ['required', 'min:8'],
+                'role.*' => ['required', 'string'],
+                'role' => ['required', 'array'],
             ]);
 
             $post = new User();
@@ -40,6 +42,11 @@ class userController extends Controller
 
             $post->save();
 
+            $user = User::find($post->id);
+            // Ambil peran-peran dari input role[]
+            $selectedRoles = $request->input('role', []);
+            // Sync peran-peran baru ke pengguna
+            $user->syncRoles($selectedRoles);
 
             $data = [$post];
             return response()->json($data);
@@ -64,6 +71,7 @@ class userController extends Controller
             $request->validate([
                 'name' => ['required', 'string', 'max:255', 'not_equal_to:#'],
                 'username' => ['required', 'string', 'max:255'],
+                'role.*' => ['required', 'string'],
             ]);
 
             $post = User::find($request->id);
@@ -75,6 +83,10 @@ class userController extends Controller
             $post->status = $request->status;
 
             $post->save();
+            // Ambil peran-peran dari input role[]
+            $selectedRoles = $request->input('role', []);
+            // Sync peran-peran baru ke pengguna
+            $post->syncRoles($selectedRoles);
 
             $data = [$post];
             return response()->json($data);

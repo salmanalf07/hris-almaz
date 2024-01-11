@@ -4,6 +4,7 @@ use App\Http\Controllers\levelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +49,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'level']
     Route::post('/update', [levelController::class, 'update'])->name('updateLevel');
     Route::delete('/delete', [levelController::class, 'delete'])->name('deleteLevel');
 });
-Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'user'], function () {
+Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:SuperAdmin'], 'prefix' => 'user'], function () {
     Route::get('/dashboard', function () {
-        return view('masterData/user/userDashboard', ['judul' => "User", 'subJudul' => "Dashboard"]);
+        $role = Role::all();
+        return view('masterData/user/userDashboard', ['judul' => "User", 'subJudul' => "Dashboard", 'role' => $role]);
         //return $employee;
     })->name('userDashboard');
     Route::get('/json', [userController::class, 'json'])->name('dataTableUser');
@@ -60,6 +62,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'user'],
     Route::delete('/delete', [userController::class, 'delete'])->name('deleteUser');
 });
 //end level
+// , 'role:SuperAdm'
 
 
 

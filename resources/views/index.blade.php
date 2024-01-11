@@ -24,6 +24,20 @@
         .select2-container--default .select2-selection--single {
             border: 0px !important;
         }
+
+        .select2-container--default.select2-container--focus .select2-selection--multiple {
+            border-top: 0px !important;
+            border-right: 0px !important;
+            border-left: 0px !important;
+            border-radius: 0px !important;
+        }
+
+        .select2-container--default .select2-selection--multiple {
+            border-top: 0px !important;
+            border-right: 0px !important;
+            border-left: 0px !important;
+            border-radius: 0px !important;
+        }
     </style>
 </head>
 

@@ -143,7 +143,7 @@
                 <!-- #END# Notifications-->
                 <li class="dropdown user_profile">
                     <div class="dropdown-toggle" data-bs-toggle="dropdown">
-                        <img src="{{asset('assets/images/user.jpg')}}" alt="user">
+                        <img style="width: 4vh;" src="{{asset('assets/images/blank-profile.png')}}" alt="user">
                     </div>
                     <ul class="dropdown-menu pullDown">
                         <li class="body">
