@@ -1,8 +1,15 @@
 <?php
 
+use App\Http\Controllers\departmentController;
+use App\Http\Controllers\employeeController;
 use App\Http\Controllers\levelController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\typeEmployeeController;
 use App\Http\Controllers\userController;
+use App\Models\department;
+use App\Models\level;
+use App\Models\typeEmployee;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
@@ -26,17 +33,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+//API
+Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'api'], function () {
+    Route::get('/bankIndonesia', function () {
+        $path = public_path('assets/json/indonesia-bank.json');
+        $data = json_decode(File::get($path), true);
+
+        return response()->json($data);
+    })->name('apiBankIndonesia');
+});
+//END API
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-//Employee
-Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'employee'], function () {
-    Route::get('/dashboard', function () {
-        return view('employee/employeeDashboard', ['judul' => "Employee", 'subJudul' => "Dashboard"]);
-        //return $employee;
-    })->name('employeeDashboard');
-});
-//End Employee
 //level
 Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'level'], function () {
     Route::get('/dashboard', function () {
@@ -49,6 +58,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'level']
     Route::post('/update', [levelController::class, 'update'])->name('updateLevel');
     Route::delete('/delete', [levelController::class, 'delete'])->name('deleteLevel');
 });
+//End level
+//User
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:SuperAdmin'], 'prefix' => 'user'], function () {
     Route::get('/dashboard', function () {
         $role = Role::all();
@@ -61,8 +72,53 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:SuperAdmin'], '
     Route::post('/update', [userController::class, 'update'])->name('updateUser');
     Route::delete('/delete', [userController::class, 'delete'])->name('deleteUser');
 });
-//end level
-// , 'role:SuperAdm'
+//End User
+//Department
+Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:SuperAdmin'], 'prefix' => 'department'], function () {
+    Route::get('/dashboard', function () {
+        return view('masterData/department/departmentDashboard', ['judul' => "Department", 'subJudul' => "Dashboard"]);
+        //return $employee;
+    })->name('departmentDashboard');
+    Route::get('/json', [departmentController::class, 'json'])->name('dataTableDepartment');
+    Route::post('/store', [departmentController::class, 'store'])->name('storeDepartment');
+    Route::post('/edit', [departmentController::class, 'edit'])->name('editDepartment');
+    Route::post('/update', [departmentController::class, 'update'])->name('updateDepartment');
+    Route::delete('/delete', [departmentController::class, 'delete'])->name('deleteDepartment');
+});
+//End Department
+//typeEmployee
+Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:SuperAdmin'], 'prefix' => 'typeEmployee'], function () {
+    Route::get('/dashboard', function () {
+        return view('masterData/typeEmployee/typeEmployeeDashboard', ['judul' => "Type Employee", 'subJudul' => "Dashboard"]);
+        //return $employee;
+    })->name('typeEmployeeDashboard');
+    Route::get('/json', [typeEmployeeController::class, 'json'])->name('dataTableTypeEmployee');
+    Route::post('/store', [typeEmployeeController::class, 'store'])->name('storeTypeEmployee');
+    Route::post('/edit', [typeEmployeeController::class, 'edit'])->name('editTypeEmployee');
+    Route::post('/update', [typeEmployeeController::class, 'update'])->name('updateTypeEmployee');
+    Route::delete('/delete', [typeEmployeeController::class, 'delete'])->name('deleteTypeEmployee');
+});
+//End typeEmployee
+//Employee
+Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:SuperAdmin'], 'prefix' => 'employee'], function () {
+    Route::get('/dashboard', function () {
+        return view('employee/employeeDashboard', ['judul' => "Employee", 'subJudul' => "Dashboard"]);
+        //return $employee;
+    })->name('employeeDashboard');
+    Route::get('/add', function () {
+        $typeEmployee = typeEmployee::get();
+        $level = level::get();
+        $department = department::get();
+        return view('employee/editorEmployee', ['judul' => "Employee", 'subJudul' => "Add", 'typeEmployee' => $typeEmployee, 'level' => $level, 'department' => $department]);
+        //return $employee;
+    })->name('addEmployee');
+    Route::get('/json', [employeeController::class, 'json'])->name('dataTableEmployee');
+    Route::post('/store', [employeeController::class, 'store'])->name('storeEmployee');
+    Route::post('/edit', [employeeController::class, 'edit'])->name('editEmployee');
+    Route::post('/update', [employeeController::class, 'update'])->name('updateEmployee');
+    Route::delete('/delete', [employeeController::class, 'delete'])->name('deleteEmployee');
+});
+//End Employee
 
 
 

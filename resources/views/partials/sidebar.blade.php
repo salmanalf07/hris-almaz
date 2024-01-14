@@ -24,9 +24,6 @@
                         <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
                             <a href="{{route('dashboard')}}">Dashboard</a>
                         </li>
-                        <li>
-                            <a href="/admin">Admin</a>
-                        </li>
                     </ul>
                 </li>
                 <li class=" {{ request()->is('employee*') ? 'active' : '' }}">
@@ -38,23 +35,23 @@
                         <li class="{{ request()->is('employee/dashboard') ? 'active' : '' }}">
                             <a href="{{route('employeeDashboard')}}">All Employee</a>
                         </li>
-                        <li>
-                            <a href="pages/employee/add-employee.html">Add Employee</a>
-                        </li>
-                        <li>
-                            <a href="pages/employee/edit-employee.html">Edit Employee</a>
-                        </li>
                     </ul>
                 </li>
                 @role(['SuperAdmin'])
-                <li class=" {{ request()->is('level*','user*') ? 'active' : '' }}">
+                <li class=" {{ request()->is('typeEmployee*','level*','department*','user*') ? 'active' : '' }}">
                     <a href="#" onClick="return false;" class="menu-toggle">
                         <i class="fas fa-atom"></i>
                         <span>Master Data</span>
                     </a>
                     <ul class="ml-menu">
+                        <li class="{{ request()->is('typeEmployee/dashboard') ? 'active' : '' }}">
+                            <a href="{{route('typeEmployeeDashboard')}}">Type Employee</a>
+                        </li>
                         <li class="{{ request()->is('level/dashboard') ? 'active' : '' }}">
                             <a href="{{route('levelDashboard')}}">Level</a>
+                        </li>
+                        <li class="{{ request()->is('department/dashboard') ? 'active' : '' }}">
+                            <a href="{{route('departmentDashboard')}}">Department</a>
                         </li>
                         <li class="{{ request()->is('user/dashboard') ? 'active' : '' }}">
                             <a href="{{route('userDashboard')}}">User</a>

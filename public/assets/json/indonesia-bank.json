@@ -1,0 +1,278 @@
+[
+  {
+    "name": "Bank Indonesia",
+    "code": "001"
+  },
+  {
+    "name": "Bank Rakyat Indonesia (BRI)",
+    "code": "002"
+  },
+  {
+    "name": "Bank Mandiri",
+    "code": "008"
+  },
+  {
+    "name": "Bank Negara Indonesia (BNI)",
+    "code": "009"
+  },
+  {
+    "name": "Bank Tabungan Negara (BTN)",
+    "code": "011"
+  },
+  {
+    "name": "Bank Danamon Indonesia",
+    "code": "013"
+  },
+  {
+    "name": "Bank Central Asia (BCA)",
+    "code": "014"
+  },
+  {
+    "name": "Bank CIMB Niaga",
+    "code": "020"
+  },
+  {
+    "name": "Bank Permata",
+    "code": "021"
+  },
+  {
+    "name": "Bank OCBC NISP",
+    "code": "022"
+  },
+  {
+    "name": "Bank Maybank Indonesia",
+    "code": "024"
+  },
+  {
+    "name": "Bank HSBC Indonesia",
+    "code": "025"
+  },
+  {
+    "name": "Bank Standard Chartered Indonesia",
+    "code": "026"
+  },
+  {
+    "name": "Bank Panin Indonesia",
+    "code": "027"
+  },
+  {
+    "name": "Bank UOB Indonesia",
+    "code": "028"
+  },
+  {
+    "name": "Bank BNP Paribas Indonesia",
+    "code": "029"
+  },
+  {
+    "name": "Bank Mega",
+    "code": "030"
+  },
+  {
+    "name": "Bank Artha Graha Internasional",
+    "code": "031"
+  },
+  {
+    "name": "Bank Shinhan Indonesia",
+    "code": "032"
+  },
+  {
+    "name": "Bank DBS Indonesia",
+    "code": "033"
+  },
+  {
+    "name": "Bank Woori Saudara Indonesia 1906",
+    "code": "034"
+  },
+  {
+    "name": "Bank ICBC Indonesia",
+    "code": "035"
+  },
+  {
+    "name": "Bank Mandiri Taspen",
+    "code": "036"
+  },
+  {
+    "name": "Bank BNI Syariah",
+    "code": "427"
+  },
+  {
+    "name": "Bank Syariah Indonesia (BSI)",
+    "code": "451"
+  },
+  {
+    "name": "Bank Muamalat Indonesia",
+    "code": "452"
+  },
+  {
+    "name": "Bank BRI Syariah",
+    "code": "453"
+  },
+  {
+    "name": "Bank BCA Syariah",
+    "code": "454"
+  },
+  {
+    "name": "Bank CIMB Niaga Syariah",
+    "code": "455"
+  },
+  {
+    "name": "Bank Permata Syariah",
+    "code": "456"
+  },
+  {
+    "name": "Bank Maybank Syariah Indonesia",
+    "code": "457"
+  },
+  {
+    "name": "Bank HSBC Syariah Indonesia",
+    "code": "458"
+  },
+  {
+    "name": "Bank Standard Chartered Syariah Indonesia",
+    "code": "459"
+  },
+  {
+    "name": "Bank Panin Syariah",
+    "code": "460"
+  },
+  {
+    "name": "Bank UOB Syariah Indonesia",
+    "code": "461"
+  },
+  {
+    "name": "Bank BNP Paribas Syariah Indonesia",
+    "code": "462"
+  },
+  {
+    "name": "Bank Sinarmas Syariah",
+    "code": "463"
+  },
+  {
+    "name": "Bank Maybank Syariah Indonesia",
+    "code": "464"
+  },
+  {
+    "name": "Bank Syariah Bukopin",
+    "code": "465"
+  },
+  {
+    "name": "Bank Mandiri Syariah",
+    "code": "466"
+  },
+  {
+    "name": "Bank Tabungan Negara Syariah",
+    "code": "467"
+  },
+  {
+    "name": "Bank Rakyat Indonesia Syariah",
+    "code": "468"
+  },
+  {
+    "name": "Bank Artha Graha Syariah",
+    "code": "469"
+  },
+  {
+    "name": "Bank Muamalat Indonesia Syariah",
+    "code": "470"
+  },
+  {
+    "name": "Bank J Trust Syariah",
+    "code": "471"
+  },
+  {
+    "name": "Bank Amar Syariah",
+    "code": "472"
+  },
+  {
+    "name": "Bank Maybank Syariah Indonesia",
+    "code": "473"
+  },
+  {
+    "name": "Bank Syariah BTN",
+    "code": "474"
+  },
+  {
+    "name": "Bank Syariah Mandiri",
+    "code": "475"
+  },
+  {
+    "name": "Bank Muamalat Indonesia",
+    "code": "476"
+  },
+  {
+    "name": "Bank BRI Syariah",
+    "code": "477"
+  },
+  {
+    "name": "Bank BNI Syariah",
+    "code": "478"
+  },
+  {
+    "name": "Bank Syariah Indonesia",
+    "code": "479"
+  },
+  {
+    "name": "Bank BCA Syariah",
+    "code": "480"
+  },
+  {
+    "name": "Bank CIMB Niaga Syariah",
+    "code": "481"
+  },
+  {
+    "name": "Bank Permata Syariah",
+    "code": "482"
+  },
+  {
+    "name": "Bank Maybank Syariah Indonesia",
+    "code": "483"
+  },
+  {
+    "name": "Bank HSBC Syariah Indonesia",
+    "code": "484"
+  },
+  {
+    "name": "Bank Standard Chartered Syariah Indonesia",
+    "code": "485"
+  },
+  {
+    "name": "Bank Panin Syariah",
+    "code": "486"
+  },
+  {
+    "name": "Bank UOB Syariah Indonesia",
+    "code": "487"
+  },
+  {
+    "name": "Bank BNP Paribas Syariah Indonesia",
+    "code": "488"
+  },
+  {
+    "name": "Bank Mega Syariah",
+    "code": "489"
+  },
+  {
+    "name": "Bank Artha Graha Internasional Syariah",
+    "code": "490"
+  },
+  {
+    "name": "Bank Shinhan Indonesia Syariah",
+    "code": "491"
+  },
+  {
+    "name": "Bank DBS Indonesia Syariah",
+    "code": "492"
+  },
+  {
+    "name": "Bank Woori Saudara Indonesia 1906 Syariah",
+    "code": "493"
+  },
+  {
+    "name": "Bank ICBC Indonesia Syariah",
+    "code": "494"
+  },
+  {
+    "name": "Bank Mandiri Taspen Syariah",
+    "code": "495"
+  }
+]

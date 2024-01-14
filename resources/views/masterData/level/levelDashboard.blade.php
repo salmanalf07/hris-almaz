@@ -1,7 +1,7 @@
 @extends('index')
 
 @section('konten')
-<section class="content" style="height: 87.1vh;">
+<section class="content heightContent">
     <div class="container-fluid">
         <div class="block-header">
             <div class="row">

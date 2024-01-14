@@ -1,7 +1,6 @@
 @extends('index')
 
 @section('konten')
-<link href="{{asset('assets/css/select2-custom-modals.css')}}" rel="stylesheet">
 <section class="content heightContent">
     <div class="container-fluid">
         <div class="block-header">
@@ -49,42 +48,20 @@
                                 <label for="name">Name</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name">
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter your type employee">
                                     </div>
                                 </div>
-                                <label for="username">Username</label>
+                                <label for="keterangan">Keterangan</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username">
+                                        <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Enter your keterangan">
                                     </div>
-                                </div>
-                                <label for="password">Password</label>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
-                                    </div>
-                                </div>
-                                <label for="role">Role</label>
-                                <div class="form-group default-select select2Style">
-                                    <select id="role" name="role[]" class="form-control select2" multiple="" data-placeholder="Select your role">
-                                        @foreach($role as $roles)
-                                        <option value="{{$roles->name}}">{{$roles->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <label for="status">Status</label>
-                                <div class="form-group default-select select2Style">
-                                    <select id="status" name="status" class="form-control select2" data-placeholder="Select">
-                                        <option value="#" selected>-- PLEASE SELECT --</option>
-                                        <option value="ACTIVE">ACTIVE</option>
-                                        <option value="NONACTIVE">NONACTIVE</option>
-                                    </select>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button id="save" type="button" class="btn btn-info waves-effect">Save</button>
-                            <button id="cancel" onclick='reset_from()' type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">Cancel</button>
+                            <button id="cancel" onclick='document.getElementById("form-add").reset()' type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -96,6 +73,7 @@
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script>
     $(function() {
+
         var oTable = $('#dataTable').DataTable({
             processing: true,
             serverSide: true,
@@ -111,7 +89,7 @@
                 "targets": [0, 3], // table ke 1
             }, ],
             ajax: {
-                url: '{{ route("dataTableUser")}}'
+                url: '{{ route("dataTableTypeEmployee")}}'
             },
             "fnCreatedRow": function(row, data, index) {
                 $('td', row).eq(0).html(index + 1);
@@ -122,11 +100,11 @@
                 },
                 {
                     data: 'name',
-                    title: 'Name'
+                    title: 'TypeEmployee'
                 },
                 {
-                    data: 'status',
-                    title: 'Status'
+                    data: 'keterangan',
+                    title: 'Keterangan'
                 },
                 {
                     data: 'aksi',
@@ -146,7 +124,7 @@
         var fd = new FormData(form);
         $.ajax({
             type: 'POST',
-            url: '{{ route("storeUser") }}',
+            url: '{{ route("storeTypeEmployee") }}',
             data: fd,
             processData: false,
             contentType: false,
@@ -160,7 +138,7 @@
                     $('#peringatan').append(text);
                 } else {
                     $('#cancel').trigger('click');
-                    reset_from();
+                    document.getElementById("form-add").reset();
                     $('#dataTable').DataTable().ajax.reload();
                 }
 
@@ -173,7 +151,7 @@
 
         $.ajax({
             type: 'POST',
-            url: '{{route("editUser")}}',
+            url: '{{route("editTypeEmployee")}}',
             data: {
                 '_token': "{{ csrf_token() }}",
                 'id': uid,
@@ -184,13 +162,7 @@
                 //isi form
                 $('#id').val(data.id);
                 $('#name').val(data.name);
-                $('#username').val(data.username);
-                $('#status').val(data.status).trigger('change');
-                var array = Object.keys(data.roles)
-                    .map(function(key) {
-                        return data.roles[key].name;
-                    });
-                $('#role').val(array).trigger('change');
+                $('#keterangan').val(data.keterangan);
 
                 id = $('#id').val();
 
@@ -210,7 +182,7 @@
         var fd = new FormData(form);
         $.ajax({
             type: 'POST',
-            url: '{{route("updateUser")}}',
+            url: '{{route("updateTypeEmployee")}}',
             data: fd,
             processData: false,
             contentType: false,
@@ -224,12 +196,34 @@
                     $('#peringatan').append(text);
                 } else {
                     $('#cancel').trigger('click');
-                    reset_from();
+                    document.getElementById("form-add").reset();
                     $('#dataTable').DataTable().ajax.reload();
                 }
             }
         });
     });
     //end update
+    $(document).on('click', '#delete', function(e) {
+        e.preventDefault();
+        if (confirm('Yakin akan menghapus data ini?')) {
+            // alert("Thank you for subscribing!" + $(this).data('id') );
+
+            $.ajax({
+                type: 'DELETE',
+                url: '{{route("deleteTypeEmployee")}}',
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    'id': $(this).data('id')
+                },
+                success: function(data) {
+                    alert("Data Berhasil Dihapus");
+                    $('#dataTable').DataTable().ajax.reload();
+                }
+            });
+
+        } else {
+            return false;
+        }
+    });
 </script>
 @endsection

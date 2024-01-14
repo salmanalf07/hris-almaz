@@ -17,8 +17,8 @@
     <link href="{{asset('assets/css/form.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/js/bundles/multiselect/css/multi-select.css')}}" rel="stylesheet">
     <style>
-        .select2-container {
-            width: 100% !important;
+        .heightContent {
+            min-height: 87.1vh;
         }
 
         .select2-container--default .select2-selection--single {
@@ -64,6 +64,8 @@
     <script src="{{asset('assets/js/common.min.js')}}"></script>
     <!-- Custom Js -->
     <script src="{{asset('assets/js/admin.js')}}"></script>
+    <!-- date -->
+    <script src="{{asset('assets/js/bundles/flatpickr.min.js')}}"></script>
     @if (request()->is('dashboard'))
     <script src="{{asset('assets/js/bundles/echart/echarts.js')}}"></script>
     <script src="{{asset('assets/js/bundles/apexcharts/apexcharts.min.js')}}"></script>
@@ -85,6 +87,7 @@
                     dropdownParent: $(this).parent().parent()
                 });
             });
+            $(".select2-notModals").select2();
         })
 
         function reset_from() {
