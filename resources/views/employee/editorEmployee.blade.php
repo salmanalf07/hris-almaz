@@ -113,7 +113,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <select id="levelId" name="levelId" class="select2-notModals" required>
+                                                    <select id="levelId" name="levelId" class="select2-notModals" style="width: 100%;" required>
                                                         <option value="#" disabled selected>Level*</option>
                                                         @foreach ($level as $levels )
                                                         <option value="{{$levels->id}}">{{$levels->level}}</option>
@@ -125,7 +125,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <select id="deptId" name="deptId" class="select2-notModals" required>
+                                                    <select id="deptId" name="deptId" class="select2-notModals" style="width: 100%;" required>
                                                         <option value="#" disabled selected>Department*</option>
                                                         @foreach ($department as $departments )
                                                         <option value="{{$departments->id}}">{{$departments->name}}</option>
@@ -144,7 +144,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <select id="typeEmployee" name="typeEmployee" class="select2-notModals" required>
+                                                    <select id="typeEmployee" name="typeEmployee" class="select2-notModals" style="width: 100%;" required>
                                                         <option value="#" disabled selected>Type Employee*</option>
                                                         @foreach ($typeEmployee as $typeEmployees )
                                                         <option value="{{$typeEmployees->id}}">{{$typeEmployees->name}}</option>
@@ -177,7 +177,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <select id="status" name="status" class="select2-notModals" required>
+                                                    <select id="status" name="status" class="select2-notModals" style="width: 100%;" required>
                                                         <option value="#" disabled selected>Status*</option>
                                                         <option value="Active">Active</option>
                                                         <option value="Resign">Resign</option>
@@ -287,7 +287,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <select id="bankName" name="bankName" class="select2-notModals">
+                                                    <select id="bankName" name="bankName" class="select2-notModals" style="width: 100%;">
                                                         <option value="#" disabled selected>Bank Name</option>
                                                     </select>
                                                 </div>

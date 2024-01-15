@@ -17,10 +17,6 @@
     <link href="{{asset('assets/css/form.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/js/bundles/multiselect/css/multi-select.css')}}" rel="stylesheet">
     <style>
-        .heightContent {
-            min-height: 87.1vh;
-        }
-
         .select2-container--default .select2-selection--single {
             border: 0px !important;
         }
@@ -37,6 +33,10 @@
             border-right: 0px !important;
             border-left: 0px !important;
             border-radius: 0px !important;
+        }
+
+        .heightContent {
+            min-height: 87.1vh;
         }
     </style>
 </head>
