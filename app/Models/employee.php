@@ -29,6 +29,18 @@ class employee extends Model
     {
         return $this->hasOne(employee_detail::class, 'empId', 'id');
     }
+    public function files()
+    {
+        return $this->hasOne(employee_document::class, 'empId', 'id');
+    }
+    public function banks()
+    {
+        return $this->hasOne(employee_bank::class, 'empId', 'id');
+    }
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'userId', 'id');
+    }
     protected static function boot()
     {
         parent::boot();

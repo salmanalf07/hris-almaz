@@ -29,11 +29,11 @@ class employee_detail extends Model
      */
     public function levels()
     {
-        return $this->hasOne(level::class, 'levelId', 'id');
+        return $this->belongsTo(level::class, 'levelId', 'id');
     }
     public function departments()
     {
-        return $this->hasOne(department::class, 'deptId', 'id');
+        return $this->belongsTo(department::class, 'deptId', 'id');
     }
     protected static function boot()
     {

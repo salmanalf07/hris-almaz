@@ -37,7 +37,10 @@
                     <div class="header">
                     </div>
                     <div class="body">
-                        <form id="wizard_with_validation" method="POST">
+                        <span id="peringatan"></span>
+                        <form id="wizard_with_validation" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="text" name="id" id="id" hidden />
                             <h3>Profile Information</h3>
                             <fieldset>
                                 <div class="card">
@@ -45,7 +48,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="employeeId" placeholder="Employee Id" readonly>
+                                                    <input type="text" class="form-control" id="employeeId" name="employeeId" placeholder="Employee Id" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -53,14 +56,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="name" placeholder="Name*">
+                                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name*" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input id="myDatePicker" class="flatpickr-input" name="birth" placeholder="Birth*">
+                                                    <input class="flatpickr-input picker-form" id="birth" name="birth" placeholder="Birth*">
                                                 </div>
                                             </div>
                                         </div>
@@ -78,28 +81,39 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="phone" placeholder="Phone">
+                                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="address" placeholder="Address">
+                                                    <input type="text" class="form-control" id="address" name="address" placeholder="Address">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="username" placeholder="Username">
+                                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="username" placeholder="Password">
+                                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select id="role" name="role[]" class="select2-notModals" multiple="" data-placeholder="Select your role">
+                                                        @foreach($role as $roles)
+                                                        <option value="{{$roles->name}}">{{$roles->name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -137,7 +151,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input id="myDatePicker" class="flatpickr-input" name="jointDate" placeholder="Joint Date*">
+                                                    <input id="jointDate" class="flatpickr-input picker-form" name="jointDate" placeholder="Joint Date*" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -156,21 +170,21 @@
                                         <div id="contractNoAttr" class="col-md-4" hidden>
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="contractNo" placeholder="Contract No">
+                                                    <input type="text" class="form-control" id="contractNo" name="contractNo" placeholder="Contract No">
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="contractStAttr" class="col-md-2" hidden>
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input id="myDatePicker" class="flatpickr-input" name="contractSt" placeholder="Contract Start*">
+                                                    <input class="flatpickr-input picker-form" id="contractSt" name="contractSt" placeholder="Contract Start">
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="contractEdAttr" class="col-md-2" hidden>
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input id="myDatePicker" class="flatpickr-input" name="contractEd" placeholder="Contract End*">
+                                                    <input class="flatpickr-input picker-form" id="contractEd" name="contractEd" placeholder="Contract End">
                                                 </div>
                                             </div>
                                         </div>
@@ -198,11 +212,17 @@
                                             <div class="file-field input-field">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="photo">
+                                                    <input type="file" id="photo" name="photo">
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text">
                                                     <div class="help-info">Max file size is 2MB</div>
+                                                </div>
+                                            </div>
+                                            <div class="currentPhoto" hidden>
+                                                <div class="d-flex align-items-center ml-2">
+                                                    <p style="margin-top: revert;margin-right:1rem">Current Photo:</p>
+                                                    <button id="currentPhoto" type="button" class="btn">View Photo</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,18 +231,24 @@
                                             <h2 class="card-inside-title">KTP</h2>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="ktpNumber" maxlength="16" minlength="3">
+                                                    <input type="text" class="form-control" id="ktpNumber" name="ktpNumber" maxlength="16" minlength="3">
                                                     <label class="form-label">KTP Number</label>
                                                 </div>
                                             </div>
                                             <div class="file-field input-field">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="ktp">
+                                                    <input type="file" id="ktp" name="ktp">
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text">
                                                     <div class="help-info">Max file size is 1MB</div>
+                                                </div>
+                                            </div>
+                                            <div class="currentKtp" hidden>
+                                                <div class="d-flex align-items-center ml-2">
+                                                    <p style="margin-top: revert;margin-right:1rem">Current KTP:</p>
+                                                    <button id="currentKtp" type="button" class="btn">View KTP</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -230,18 +256,24 @@
                                             <h2 class="card-inside-title">KK</h2>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="kkNumber" maxlength="16" minlength="3">
+                                                    <input type="text" class="form-control" id="kkNumber" name="kkNumber" maxlength="16" minlength="3">
                                                     <label class="form-label">KK Number</label>
                                                 </div>
                                             </div>
                                             <div class="file-field input-field">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="kk">
+                                                    <input type="file" name="kk" id="kk">
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text">
                                                     <div class="help-info">Max file size is 1MB</div>
+                                                </div>
+                                            </div>
+                                            <div class="currentKk" hidden>
+                                                <div class="d-flex align-items-center ml-2">
+                                                    <p style="margin-top: revert;margin-right:1rem">Current KK:</p>
+                                                    <button id="currentKk" type="button" class="btn">View KK</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -249,18 +281,24 @@
                                             <h2 class="card-inside-title">NPWP</h2>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="npwpNumber" maxlength="16" minlength="3">
+                                                    <input type="text" class="form-control" id="npwpNumber" name="npwpNumber" maxlength="16" minlength="3">
                                                     <label class="form-label">NPWP Number</label>
                                                 </div>
                                             </div>
                                             <div class="file-field input-field">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="npwp">
+                                                    <input type="file" id="npwp" name="npwp">
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text">
                                                     <div class="help-info">Max file size is 1MB</div>
+                                                </div>
+                                            </div>
+                                            <div class="currentNpwp" hidden>
+                                                <div class="d-flex align-items-center ml-2">
+                                                    <p style="margin-top: revert;margin-right:1rem">Current NPWP:</p>
+                                                    <button id="currentNpwp" type="button" class="btn">View NPWP</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -269,11 +307,17 @@
                                             <div class="file-field input-field">
                                                 <div class="btn">
                                                     <span>File</span>
-                                                    <input type="file" name="ijazah">
+                                                    <input type="file" id="ijazah" name="ijazah">
                                                 </div>
                                                 <div class="file-path-wrapper">
                                                     <input class="file-path validate" type="text">
                                                     <div class="help-info">Max file size is 1MB</div>
+                                                </div>
+                                            </div>
+                                            <div class="currentIjazah" hidden>
+                                                <div class="d-flex align-items-center ml-2">
+                                                    <p style="margin-top: revert;margin-right:1rem">Current Ijazah:</p>
+                                                    <button id="currentIjazah" type="button" class="btn">View Ijazah</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -297,21 +341,21 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="accNumber" placeholder="Account Number">
+                                                    <input type="text" class="form-control" id="accNumber" name="accNumber" placeholder="Account Number">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="accName" placeholder="Account Name">
+                                                    <input type="text" class="form-control" id="accName" name="accName" placeholder="Account Name">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="accLocation" placeholder="Account Location">
+                                                    <input type="text" class="form-control" id="acclocation" name="acclocation" placeholder="Account Location">
                                                 </div>
                                             </div>
                                         </div>
@@ -320,6 +364,25 @@
                             </fieldset>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modals -->
+    <div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">View Document</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="player"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancel" type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -366,8 +429,38 @@
                 return form.valid();
             },
             onFinished: function(event, currentIndex) {
-                swal("Good job!", "Submitted!", "success");
-            },
+                // Submit the form using AJAX
+                if ('{{isset($aksi) && $aksi == "editData"}}') {
+                    var link = "{{ route('updateEmployee') }}";
+                } else {
+                    var link = "{{ route('storeEmployee') }}";
+                }
+
+                var formData = new FormData($('#wizard_with_validation')[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: link,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        // Handle the success response
+                        if (data[1]) {
+                            var dataa = Object.assign({}, data[0])
+                            for (let x in dataa) {
+                                text = '<div class="alert alert-danger"><strong>Oh snap!' + dataa[x] + '</strong>';
+                                $('#peringatan').append(text);
+                            }
+                        } else {
+                            window.location.href = "{{ route('employeeDashboard') }}";
+                        }
+                    },
+                    error: function(error) {
+                        // Handle the error response, if needed
+                        alert("Oops!", "Something went wrong!", "error");
+                    }
+                });
+            }
         });
 
         form.validate({
@@ -387,7 +480,7 @@
             },
         });
         //date init
-        flatpickr("#myDatePicker", {
+        flatpickr(".picker-form", {
             dateFormat: "d/m/Y",
             allowInput: true,
             onOpen: function(selectedDates, dateStr, instance) {
@@ -432,6 +525,89 @@
                 });
             }
         });
+
+        //edit data
+        if ('{{isset($aksi) && $aksi == "editData"}}') {
+            $('#id').val('{!! isset($data) ? $data->id : "" !!}');
+            $('#employeeId').val('{!! isset($data) ? $data->empId : "" !!}');
+            $('#name').val('{!! isset($data) ? $data->name : "" !!}');
+            $('#birth').val(('{!! isset($data) ? $data->birth : "" !!}').split("-").reverse().join("/"));
+            $('#gander').val('{!! isset($data) ? $data->gander : "" !!}').trigger('change');
+            $('#phone').val('{!! isset($data) ? $data->phone : "" !!}');
+            $('#address').val('{!! isset($data) ? $data->address : "" !!}');
+            $('#username').val('{!! isset($data->users) ? $data->users->username : "" !!}');
+            <?php
+            // Contoh data roles dari PHP
+            $dataRoles = isset($data->users) ? $data->users->roles : [];
+            // Ubah hanya jika $dataRoles bukan array
+            $dataRolesArray = is_array($dataRoles) ? $dataRoles : $dataRoles->toArray();
+            // Ambil hanya nilai dari properti "name" dan ubah menjadi string dengan koma sebagai pemisah
+            $resultString = implode(',', array_column($dataRolesArray, 'name'));
+            ?>
+
+            var rawRole = '{!! $resultString !!}';
+            var dataArray = rawRole.split(",");
+            $('#role').val(dataArray).trigger('change');
+
+            $('#levelId').val('{!! isset($data->details) ? $data->details->levelId : "" !!}').trigger('change');
+            $('#deptId').val('{!! isset($data->details) ? $data->details->deptId : "" !!}').trigger('change');
+            $('#jointDate').val(('{!! isset($data->details) ? $data->details->joinDate : "" !!}').split("-").reverse().join("/"))
+            $('#typeEmployee').val('{!! isset($data->details) ? $data->details->typeEmployeeId : "" !!}').trigger('change');
+            $('#contractNo').val('{!! isset($data->details) ? $data->details->contractNo : "" !!}');
+            $('#contractSt').val(('{!! isset($data->details) ? $data->details->contractSt : "" !!}').split("-").reverse().join("/"))
+            $('#contractEd').val(('{!! isset($data->details) ? $data->details->contractEd : "" !!}').split("-").reverse().join("/"))
+            $('#status').val('{!! isset($data->details) ? $data->details->status : "" !!}').trigger('change');
+            if ('{!! isset($data->files->photo)!!}') {
+                $('.currentPhoto').removeAttr('hidden');
+                document.getElementById('currentPhoto').setAttribute('data-type', '{!!isset($data->files) ? $data->files->photo : ""!!}');
+            }
+            $('#ktpNumber').val('{!! isset($data->files) ? $data->files->ktpNumber : "" !!}');
+            if ('{!! isset($data->files->ktp)!!}') {
+                $('.currentKtp').removeAttr('hidden');
+                document.getElementById('currentKtp').setAttribute('data-type', '{!!isset($data->files) ? $data->files->ktp : ""!!}');
+            }
+            $('#kkNumber').val('{!! isset($data->files) ? $data->files->kkNumber : "" !!}');
+            if ('{!! isset($data->files->kk)!!}') {
+                $('.currentKk').removeAttr('hidden');
+                document.getElementById('currentKk').setAttribute('data-type', '{!!isset($data->files) ? $data->files->kk : ""!!}');
+            }
+            $('#npwpNumber').val('{!! isset($data->files) ? $data->files->npwpNumber : "" !!}');
+            if ('{!! isset($data->files->npwp)!!}') {
+                $('.currentNpwp').removeAttr('hidden');
+                document.getElementById('currentNpwp').setAttribute('data-type', '{!!isset($data->files) ? $data->files->npwp : ""!!}');
+            }
+            if ('{!! isset($data->files->ijazah)!!}') {
+                $('.currentIjazah').removeAttr('hidden');
+                document.getElementById('currentIjazah').setAttribute('data-type', '{!!isset($data->files) ? $data->files->ijazah : ""!!}');
+            }
+
+            $('#bankName').val('{!! isset($data->banks) ? $data->banks->bankName : "" !!}').trigger('change');
+            $('#accNumber').val('{!! isset($data->banks) ? $data->banks->accNumber : "" !!}');
+            $('#accName').val('{!! isset($data->banks) ? $data->banks->accName : "" !!}');
+            $('#acclocation').val('{!! isset($data->banks) ? $data->banks->acclocation : "" !!}');
+
+        }
+        //end edit data
+    })
+    $(document).on('click', '#currentPhoto,#currentKtp,#currentKk,#currentNpwp,#currentIjazah', function(e) {
+        e.preventDefault();
+        var type = $(this).data('type');
+        var player = document.getElementById("player");
+        var mediaPlayer;
+
+        function createImagePlayer(src) {
+            var imagePlayer = document.createElement("img");
+            imagePlayer.id = "imagePlayer";
+            imagePlayer.src = '{{ asset("assets/images/") }}/' + src;
+            imagePlayer.alt = "Slideshow Image";
+            return imagePlayer;
+        }
+
+        mediaPlayer = createImagePlayer(type);
+        player.innerHTML = "";
+        player.appendChild(mediaPlayer);
+
+        $('#documentModal').modal('show');
     })
 </script>
 @endsection

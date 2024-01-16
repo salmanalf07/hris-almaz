@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->date('birth');
             $table->string('gander');
-            $table->string('userId');
+            $table->string('userId')->nullable();
             $table->longText('address')->nullable();
             $table->softDeletes();
             $table->timestamps();

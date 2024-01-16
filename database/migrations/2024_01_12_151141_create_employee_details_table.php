@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('typeEmployeeId');
             $table->string('status');
             $table->string('contractNo')->nullable();
-            $table->date('contractSt');
-            $table->date('contrcatEd');
+            $table->date('contractSt')->nullable();
+            $table->date('contrcatEd')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

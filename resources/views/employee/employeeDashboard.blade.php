@@ -52,7 +52,7 @@
             "autoWidth": true,
             "columnDefs": [{
                 "className": "text-center",
-                "targets": [4], // table ke 1
+                "targets": [2, 5, 6], // table ke 1
             }, ],
             ajax: {
                 url: '{{ route("dataTableEmployee")}}'
@@ -69,12 +69,20 @@
                     title: 'Name'
                 },
                 {
-                    data: 'gender',
+                    data: 'gander',
                     title: 'Gender'
                 },
                 {
-                    data: 'details.levels.name',
+                    data: 'details.levels.level',
                     title: 'Level'
+                },
+                {
+                    data: 'details.departments.name',
+                    title: 'Department'
+                },
+                {
+                    data: 'details.status',
+                    title: 'Status'
                 },
                 {
                     data: 'aksi',
@@ -82,6 +90,28 @@
                 }
             ],
         });
+    });
+    $(document).on('click', '#delete', function(e) {
+        e.preventDefault();
+        if (confirm('Yakin akan menghapus data ini?')) {
+            // alert("Thank you for subscribing!" + $(this).data('id') );
+
+            $.ajax({
+                type: 'DELETE',
+                url: '{{route("deleteEmployee")}}',
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    'id': $(this).data('id')
+                },
+                success: function(data) {
+                    alert("Data Berhasil Dihapus");
+                    $('#dataTable').DataTable().ajax.reload();
+                }
+            });
+
+        } else {
+            return false;
+        }
     });
 </script>
 @endsection

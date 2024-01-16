@@ -109,12 +109,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:SuperAdmin'], '
         $typeEmployee = typeEmployee::get();
         $level = level::get();
         $department = department::get();
-        return view('employee/editorEmployee', ['judul' => "Employee", 'subJudul' => "Add", 'typeEmployee' => $typeEmployee, 'level' => $level, 'department' => $department]);
+        $role = Role::all();
+        return view('employee/editorEmployee', ['judul' => "Employee", 'subJudul' => "Add", 'typeEmployee' => $typeEmployee, 'level' => $level, 'department' => $department, 'role' => $role]);
         //return $employee;
     })->name('addEmployee');
     Route::get('/json', [employeeController::class, 'json'])->name('dataTableEmployee');
     Route::post('/store', [employeeController::class, 'store'])->name('storeEmployee');
-    Route::post('/edit', [employeeController::class, 'edit'])->name('editEmployee');
+    Route::get('/edit/{id}', [employeeController::class, 'edit'])->name('editEmployee');
     Route::post('/update', [employeeController::class, 'update'])->name('updateEmployee');
     Route::delete('/delete', [employeeController::class, 'delete'])->name('deleteEmployee');
 });
